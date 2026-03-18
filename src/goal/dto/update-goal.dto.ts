@@ -3,6 +3,6 @@ import { CreateGoalDto } from './create-goal.dto';
 //import { Goal } from '../entities/goal.entity';
 
 export class UpdateGoalDto extends PartialType(CreateGoalDto) {
-  targetDate: Date;
+  targetDate: string;
   progress: string;
 }

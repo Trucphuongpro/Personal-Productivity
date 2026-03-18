@@ -22,7 +22,7 @@ export class Task {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ default: 'pending' })
   status: TasksStatus;
 
   @Column()

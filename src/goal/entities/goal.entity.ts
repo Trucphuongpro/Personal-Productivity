@@ -22,7 +22,7 @@ export class Goal {
   description: string;
 
   @Column()
-  targetDate: Date;
+  targetDate: string;
 
   @Column({ default: 0 })
   progress: number;

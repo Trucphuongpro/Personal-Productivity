@@ -1,6 +1,11 @@
+import { IsNotEmpty, IsDateString } from 'class-validator';
 export class CreateGoalDto {
+  @IsNotEmpty()
   title: string;
+
+  @IsNotEmpty()
   description: string;
-  targetDate: Date;
-  progress: string;
+
+  @IsDateString()
+  targetDate: string;
 }

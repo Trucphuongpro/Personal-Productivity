@@ -4,17 +4,26 @@ import { Goal } from './entities/goal.entity';
 import { Repository } from 'typeorm';
 import { Task } from 'src/tasks/entities/task.entity';
 import { TasksStatus } from 'src/tasks/enums/task-status.enum';
+import { CreateGoalDto } from './dto/create-goal.dto';
 //import { TasksService } from 'src/tasks/tasks.service';
 
 @Injectable()
 export class GoalService {
   constructor(
-    @InjectRepository(Task)
+    @InjectRepository(Goal)
     private goalRepository: Repository<Goal>,
 
-    @InjectRepository(Goal)
+    @InjectRepository(Task)
     private taskRepository: Repository<Task>,
   ) {}
+
+  async createGoal(createGoalDto: CreateGoalDto): Promise<Goal> {
+    const goal = this.goalRepository.create({
+      ...createGoalDto,
+      progress: 0,
+    });
+    return await this.goalRepository.save(goal);
+  }
 
   async completeTask(taskID: string, goalID: string): Promise<Task> {
     const task = await this.taskRepository.findOne({
